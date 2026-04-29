@@ -1,109 +1,152 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>追踪结果 | LogiNexa</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>运单追踪 | LogiTrans</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="stars" id="stars"></div>
 
-  <header class="header">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">LN</div>
-        <div class="brand-text">
-          <strong>LogiNexa</strong>
-          <small>智能物流</small>
-        </div>
-      </a>
-      <a class="btn btn-ghost" href="index.html">← 返回首页</a>
+<!-- 导航 -->
+<div class="nav">
+  <div class="logo">LogiTrans</div>
+  <div class="menu">
+    <a href="index.html">首页</a>
+    <a href="index.html#services">服务与价格</a>
+    <a href="index.html#process">解决方案</a>
+    <a href="index.html#about">关于我们</a>
+  </div>
+  <button class="btn-nav" onclick="alert('演示模式，暂不支持登录')">登录 / 注册</button>
+</div>
+
+<!-- 跟踪输入 -->
+<div style="background:linear-gradient(135deg,var(--blue),var(--blue-light));padding:40px">
+  <div class="container">
+    <h2 style="color:#fff;text-align:center;margin-bottom:20px;font-size:clamp(24px,3.5vw,34px)">运单追踪查询</h2>
+    <div class="track-box" style="max-width:600px;margin:0 auto">
+      <input id="num" type="text" placeholder="请输入运单号">
+      <button onclick="track()">立即查询</button>
     </div>
-  </header>
+  </div>
+</div>
 
-  <main class="section" style="padding-top:110px">
-    <div class="container">
-      <div class="section-head" style="margin-bottom:32px">
-        <div class="section-kicker">📦 追踪结果</div>
-        <h2 style="margin:14px 0 10px">包裹物流轨迹</h2>
-        <p style="color:var(--muted)">完整的运输时间线，实时状态透明可见。</p>
+<!-- 结果 -->
+<div class="section">
+  <div class="container">
+    <div style="max-width:700px;margin:0 auto">
+      <div style="background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden">
+        <!-- 头部状态 -->
+        <div style="background:linear-gradient(135deg,var(--blue),var(--blue-light));padding:24px 28px;color:#fff">
+          <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+            <div>
+              <div style="font-size:13px;opacity:.8;margin-bottom:4px">运单号</div>
+              <div style="font-size:22px;font-weight:700" id="display-num">—</div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-size:13px;opacity:.8;margin-bottom:4px">当前状态</div>
+              <div style="font-size:20px;font-weight:700;color:#a5f3fc" id="display-status">运输中</div>
+            </div>
+          </div>
+        </div>
+        <!-- 基础信息 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)">
+          <div style="background:var(--white);padding:18px 24px">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:6px">路线</div>
+            <div style="font-weight:600;font-size:15px">深圳 → 洛杉矶</div>
+          </div>
+          <div style="background:var(--white);padding:18px 24px">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:6px">运输方式</div>
+            <div style="font-weight:600;font-size:15px">快捷空运</div>
+          </div>
+          <div style="background:var(--white);padding:18px 24px">
+            <div style="font-size:12px;color:var(--muted);margin-bottom:6px">预计到达</div>
+            <div style="font-weight:600;font-size:15px;color:var(--blue)">2–4 天</div>
+          </div>
+        </div>
+        <!-- 进度条 -->
+        <div style="padding:24px 28px">
+          <div style="display:flex;justify-content:space-between;margin-bottom:8px;font-size:13px;color:var(--muted)">
+            <span>已揽收</span><span>枢纽中转</span><span>清关中</span><span>已签收</span>
+          </div>
+          <div style="height:10px;background:var(--border);border-radius:999px;overflow:hidden">
+            <div style="height:100%;width:60%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:999px"></div>
+          </div>
+        </div>
+        <!-- 时间线 -->
+        <div style="padding:0 28px 28px">
+          <div style="font-size:15px;font-weight:600;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)">物流轨迹</div>
+          <div id="timeline" style="display:grid;gap:0"></div>
+        </div>
       </div>
 
-      <div class="result-summary">
-        <div class="summary-card">
-          <small>运单号</small>
-          <h3 id="trackingNum">—</h3>
-        </div>
-        <div class="summary-card">
-          <small>当前状态</small>
-          <h3 style="color:var(--success)">运输中</h3>
-        </div>
-        <div class="summary-card">
-          <small>预计送达</small>
-          <h3>2–4 天</h3>
-        </div>
-      </div>
-
-      <div class="timeline-card">
-        <div class="timeline" id="timeline"></div>
-      </div>
-
-      <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
-        <a class="btn btn-primary" href="index.html#track">继续查询</a>
-        <a class="btn btn-ghost" href="index.html#contact">联系客服</a>
+      <div style="text-align:center;margin-top:24px">
+        <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;padding:12px 24px;background:var(--blue);color:#fff;border-radius:var(--radius);font-weight:600">← 返回首页</a>
       </div>
     </div>
-  </main>
+  </div>
+</div>
 
-  <script>
-    // 星空背景
-    var starsEl = document.getElementById('stars');
-    for (var i = 0; i < 50; i++) {
-      var dot = document.createElement('div');
-      dot.className = 'star-dot';
-      dot.style.cssText =
-        'left:' + (Math.random()*100) + '%;' +
-        'top:' + (Math.random()*100) + '%;' +
-        'width:' + (Math.random()*2+1) + 'px;' +
-        'height:' + (Math.random()*2+1) + 'px;' +
-        '--d:' + (Math.random()*3+2).toFixed(1) + 's;' +
-        'animation-delay:' + (Math.random()*3).toFixed(1) + 's;';
-      starsEl.appendChild(dot);
-    }
+<!-- 底部 -->
+<footer class="footer">
+  <div>
+    <strong>LogiTrans</strong>
+    <p class="footer-copy">连接全球，传递信任</p>
+  </div>
+  <div class="footer-links">
+    <a href="index.html#services">服务</a>
+    <a href="index.html#process">流程</a>
+    <a href="index.html#about">关于</a>
+  </div>
+  <div>
+    <p style="font-size:13px">© 2026 LogiTrans 物流有限公司</p>
+  </div>
+</footer>
 
-    // 解析运单号
-    var params = new URLSearchParams(window.location.search);
-    var num = params.get("num") || "LN-260429-001";
-    document.getElementById("trackingNum").textContent = num;
+<script>
+function track(){
+  var num = document.getElementById('num').value.trim();
+  if(!num){
+    alert('请输入运单号');
+    return;
+  }
+  window.location.href = 'tracking.html?num=' + encodeURIComponent(num);
+}
 
-    // 物流时间线（演示数据）
-    var events = [
-      { time: "2026-04-27 09:20", title: "订单创建", desc: "包裹信息已录入物流系统，等待揽收。" },
-      { time: "2026-04-27 15:10", title: "已揽收", desc: "快递员已从发件人仓库取走包裹。" },
-      { time: "2026-04-28 08:35", title: "国内运输中", desc: "包裹已转移至国际分拨枢纽。" },
-      { time: "2026-04-29 12:00", title: "清关处理中", desc: "包裹正在通过海关检验检疫。" },
-      { time: "2026-04-30 06:00", title: "国际运输中", desc: "包裹已装机，飞往目的地国家。" }
-    ];
+// 显示运单号
+var params = new URLSearchParams(window.location.search);
+var num = params.get('num') || 'LN-260429-001';
+document.getElementById('display-num').textContent = num;
 
-    var timeline = document.getElementById("timeline");
-    var html = '';
-    for (var i = 0; i < events.length; i++) {
-      var item = events[i];
-      var currentClass = i === events.length - 1 ? 'current' : '';
-      html += '<div class="timeline-item ' + currentClass + '">' +
-        '<div class="timeline-dot"></div>' +
-        '<div class="timeline-content">' +
-          '<div class="timeline-time">' + item.time + '</div>' +
-          '<h4>' + item.title + '</h4>' +
-          '<p>' + item.desc + '</p>' +
-        '</div>' +
-      '</div>';
-    }
-    timeline.innerHTML = html;
-  </script>
+// 物流时间线
+var events = [
+  { time: '2026-04-27 09:20', title: '订单创建', desc: '包裹信息已录入物流系统，等待揽收', done: true },
+  { time: '2026-04-27 15:10', title: '已揽收', desc: '快递员已从发件人仓库取走包裹', done: true },
+  { time: '2026-04-28 08:35', title: '国内运输中', desc: '包裹已转移至国际分拨枢纽', done: true },
+  { time: '2026-04-29 12:00', title: '清关处理中', desc: '包裹正在通过海关检验检疫', done: true },
+  { time: '2026-04-30 06:00', title: '国际运输中', desc: '包裹已装机，飞往目的地国家', done: false }
+];
+
+var timeline = document.getElementById('timeline');
+var html = '';
+for (var i = 0; i < events.length; i++) {
+  var ev = events[i];
+  var color = ev.done ? 'var(--blue)' : 'var(--muted)';
+  var opacity = ev.done ? '1' : '0.5';
+  html += '<div style="display:grid;grid-template-columns:24px 1fr;gap:16px;padding:14px 0;border-bottom:1px solid var(--border);opacity:' + opacity + '">' +
+    '<div style="display:flex;flex-direction:column;align-items:center;gap:4px">' +
+      '<div style="width:12px;height:12px;border-radius:50%;background:' + color + ';flex-shrink:0"></div>' +
+      (i < events.length - 1 ? '<div style="width:2px;flex:1;background:' + color + ';opacity:.3"></div>' : '') +
+    '</div>' +
+    '<div style="padding-bottom:8px">' +
+      '<div style="font-size:12px;color:var(--muted);margin-bottom:4px">' + ev.time + '</div>' +
+      '<div style="font-weight:600;margin-bottom:2px">' + ev.title + '</div>' +
+      '<div style="font-size:14px;color:var(--muted)">' + ev.desc + '</div>' +
+    '</div>' +
+  '</div>';
+}
+timeline.innerHTML = html;
+</script>
+
 </body>
 </html>

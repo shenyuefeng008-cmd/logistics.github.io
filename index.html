@@ -1,359 +1,186 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LogiNexa | 智能物流追踪平台</title>
-  <meta name="description" content="LogiNexa - 智能物流追踪、路线可视化、跨境配送一站式SaaS平台，覆盖全球120+国家。" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogiTrans物流 | 全球物流解决方案</title>
+<meta name="description" content="LogiTrans 提供全球物流解决方案，覆盖220+国家，安全、快捷、透明。" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="stars" id="stars"></div>
 
-  <header class="header">
-    <div class="container nav">
-      <a class="brand" href="index.html">
-        <div class="brand-mark">LN</div>
-        <div class="brand-text">
-          <strong>LogiNexa</strong>
-          <small>智能物流</small>
-        </div>
-      </a>
-      <nav class="menu">
-        <a href="#features">功能</a>
-        <a href="#workflow">流程</a>
-        <a href="#pricing">方案</a>
-        <a href="#contact">联系</a>
-      </nav>
-      <a class="btn btn-primary" href="#track">立即追踪</a>
+<!-- 导航 -->
+<div class="nav">
+  <div class="logo">LogiTrans</div>
+  <div class="menu">
+    <a href="#">首页</a>
+    <a href="#services">服务与价格</a>
+    <a href="#process">解决方案</a>
+    <a href="#about">关于我们</a>
+  </div>
+  <button class="btn-nav" onclick="alert('演示模式，暂不支持登录')">登录 / 注册</button>
+</div>
+
+<!-- Banner -->
+<div class="hero">
+  <div class="hero-left">
+    <h1>连接全球，传递信任<br>让物流更简单</h1>
+    <p>提供全球物流解决方案，安全、快捷、透明，220+国家全覆盖</p>
+    <div class="track-box">
+      <input id="num" type="text" placeholder="请输入运单号">
+      <button onclick="track()">立即查询</button>
     </div>
-  </header>
+  </div>
+  <div class="hero-pic">
+    <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80" alt="物流运输">
+  </div>
+</div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="hero-badge">AI 驱动的智能物流体验</div>
-          <h1>让物流管理<br>像 SaaS 产品一样丝滑。</h1>
-          <p class="lead">
-            顶级追踪体验、路线全程可视、智能客服支持，专为追求极致的物流品牌打造。
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#track">🔍 包裹追踪</a>
-            <a class="btn btn-ghost" href="#pricing">查看方案</a>
-          </div>
-          <div class="metric-row">
-            <div class="metric">
-              <strong>120+</strong>
-              <span>覆盖国家</span>
-            </div>
-            <div class="metric">
-              <strong>24/7</strong>
-              <span>实时支持</span>
-            </div>
-            <div class="metric">
-              <strong>99.9%</strong>
-              <span>运行稳定性</span>
-            </div>
-          </div>
-        </div>
+<!-- 数据 -->
+<div class="stats-row">
+  <div class="stat-item">
+    <strong>220+</strong>
+    <span>覆盖国家</span>
+  </div>
+  <div class="stat-item">
+    <strong>150万+</strong>
+    <span>日处理包裹</span>
+  </div>
+  <div class="stat-item">
+    <strong>99.5%</strong>
+    <span>准时率</span>
+  </div>
+  <div class="stat-item">
+    <strong>5000+</strong>
+    <span>合作客户</span>
+  </div>
+</div>
 
-        <div class="hero-panel">
-          <div class="panel-top">
-            <span class="dot-live"></span>
-            <span>实时物流概览</span>
-          </div>
-          <div class="panel-card">
-            <div class="panel-row">
-              <div>
-                <small style="color:var(--muted);font-size:13px">路线</small>
-                <strong>深圳 → 洛杉矶</strong>
-              </div>
-              <div class="status-pill success">运输中</div>
-            </div>
-            <div class="progress-track">
-              <span class="done"></span>
-              <span class="done"></span>
-              <span class="active"></span>
-              <span></span>
-            </div>
-            <div class="progress-labels">
-              <span>已揽收</span>
-              <span>枢纽</span>
-              <span>清关</span>
-              <span>签收</span>
-            </div>
-            <div class="mini-grid">
-              <div class="mini-box">
-                <small>运单号</small>
-                <strong>LN-260429-001</strong>
-              </div>
-              <div class="mini-box">
-                <small>预计到达</small>
-                <strong>2–4 天</strong>
-              </div>
-              <div class="mini-box">
-                <small>运输方式</small>
-                <strong>快捷空运</strong>
-              </div>
-              <div class="mini-box">
-                <small>优先级</small>
-                <strong>高优</strong>
-              </div>
-            </div>
-          </div>
+<!-- 服务 -->
+<div class="section" id="services">
+  <div class="container">
+    <div class="section-header">
+      <h2>我们的服务</h2>
+      <p>从揽收到签收，全链路一站式物流服务</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1508612761958-e931cdbdb3fe?w=600&q=80" alt="国际快递">
+        <div class="service-card-body">
+          <h3>国际快递</h3>
+          <p>全球主要城市 3-7 个工作日送达，门到门全程追踪，优先清关服务。</p>
         </div>
       </div>
-    </section>
-
-    <section class="section track-section" id="track">
-      <div class="container">
-        <div class="section-head" style="text-align:center;margin-bottom:32px">
-          <div class="section-kicker">📦 包裹追踪</div>
-          <h2 style="margin:14px 0 12px">随时随地，掌握包裹动态。</h2>
-          <p style="color:var(--muted)">输入运单号，即时获取物流轨迹与状态更新。</p>
-        </div>
-        <div class="track-card">
-          <div class="track-input-row">
-            <input id="trackingInput" type="text" placeholder="输入运单号，如 LN-260429-001" />
-            <button class="btn btn-primary" onclick="trackShipment()">立即查询</button>
-          </div>
-          <div class="track-hint">示例运单号：LN-260429-001</div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?w=600&q=80" alt="国际专线">
+        <div class="service-card-body">
+          <h3>国际专线</h3>
+          <p>中美、中欧、中日专线稳定运营，双清包税，批量发货性价比更高。</p>
         </div>
       </div>
-    </section>
-
-    <section class="section alt" id="features">
-      <div class="container">
-        <div class="section-head" style="text-align:center;margin-bottom:40px">
-          <div class="section-kicker">✨ 核心功能</div>
-          <h2>一体化物流解决方案</h2>
-          <p style="color:var(--muted)">从揽收到签收，全链路可视化追踪管理</p>
-        </div>
-        <div class="cards-3">
-          <div class="feature-card">
-            <div class="card-icon">📦</div>
-            <h3>智能包裹管理</h3>
-            <p>一站式管理快递、空运、海运及跨境订单，告别繁琐操作，体验流畅。</p>
-          </div>
-          <div class="feature-card">
-            <div class="card-icon">🌍</div>
-            <h3>全球路线可视</h3>
-            <p>实时展示运输路线、各国清关节点、派送进度，透明可信。</p>
-          </div>
-          <div class="feature-card">
-            <div class="card-icon">⚡</div>
-            <h3>极速运营响应</h3>
-            <p>减少客服压力，引导用户自助查询，效率提升立竿见影。</p>
-          </div>
-          <div class="feature-card">
-            <div class="card-icon">🤖</div>
-            <h3>AI 智能助手</h3>
-            <p>接入大模型，智能解答物流问题，7×24 小时不掉线。</p>
-          </div>
-          <div class="feature-card">
-            <div class="card-icon">🔗</div>
-            <h3>开放 API</h3>
-            <p>标准 RESTful 接口，无缝对接 ERP、WMS 及电商平台。</p>
-          </div>
-          <div class="feature-card">
-            <div class="card-icon">🛡️</div>
-            <h3>数据安全保障</h3>
-            <p>端到端加密，SOC 2 认证，企业级数据安全合规。</p>
-          </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=600&q=80" alt="海外仓储">
+        <div class="service-card-body">
+          <h3>海外仓储</h3>
+          <p>美国、欧洲多地仓库布局，支持一件代发，退件处理，库存实时管理。</p>
         </div>
       </div>
-    </section>
-
-    <section class="section" id="workflow">
-      <div class="container split">
-        <div class="workflow-copy">
-          <div class="section-kicker">📋 操作流程</div>
-          <h2>三步完成全流程追踪</h2>
-          <p style="color:var(--muted);margin-top:14px">简洁的流程设计，让客户省心，让你专注核心业务。</p>
-          <div class="step-list">
-            <div class="step">
-              <div class="step-num">01</div>
-              <div>
-                <h4>输入运单号</h4>
-                <p>客户在首页输入运单号，一键提交，即时反馈。</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">02</div>
-              <div>
-                <h4>系统展示物流轨迹</h4>
-                <p>专属结果页以时间线形式呈现完整物流历史记录。</p>
-              </div>
-            </div>
-            <div class="step">
-              <div class="step-num">03</div>
-              <div>
-                <h4>接入 AI 与真实 API</h4>
-                <p>预留接口，可快速对接各物流服务商 API 与 AI 助手。</p>
-              </div>
-            </div>
-          </div>
+      <div class="service-card">
+        <img src="https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?w=600&q=80" alt="末端配送">
+        <div class="service-card-body">
+          <h3>末端配送</h3>
+          <p>本地快递网络覆盖，次日达、当日达灵活可选，全程轨迹可查。</p>
         </div>
-
-        <div class="dashboard-card">
-          <div class="dash-header">
-            <div>
-              <small style="color:var(--muted);font-size:13px">运营概况</small>
-              <h3>物流健康度</h3>
-            </div>
-            <div class="status-badge">运行正常</div>
-          </div>
-          <div class="bars">
-            <div class="bar-row"><span>亚洲</span><div><i style="width:84%"></i></div></div>
-            <div class="bar-row"><span>欧洲</span><div><i style="width:66%"></i></div></div>
-            <div class="bar-row"><span>北美</span><div><i style="width:91%"></i></div></div>
-            <div class="bar-row"><span>中东</span><div><i style="width:52%"></i></div></div>
-          </div>
-          <div class="dash-footer">
-            <div>
-              <small>本月包裹量</small>
-              <strong>128,400</strong>
-            </div>
-            <div>
-              <small>延误率</small>
-              <strong>0.8%</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="pricing">
-      <div class="container">
-        <div class="section-head" style="text-align:center;margin-bottom:40px">
-          <div class="section-kicker">💰 方案定价</div>
-          <h2>按需选择，灵活扩展</h2>
-          <p style="color:var(--muted)">从 Demo 到企业级，满足不同发展阶段的需求</p>
-        </div>
-        <div class="cards-3">
-          <div class="price-card">
-            <div class="price-label">体验版</div>
-            <div class="price"><sup>¥</sup>0<span>/月</span></div>
-            <ul>
-              <li>基础首页展示</li>
-              <li>标准追踪页</li>
-              <li>品牌形象展示</li>
-              <li>邮件技术支持</li>
-            </ul>
-            <button class="btn btn-ghost" style="width:100%;margin-top:18px" onclick="alert('演示模式，暂不支持购买')">免费体验</button>
-          </div>
-          <div class="price-card featured">
-            <div class="price-label">商业版</div>
-            <div class="price"><sup>¥</sup>199<span>/月</span></div>
-            <ul>
-              <li>完整追踪流程</li>
-              <li>服务卡片展示</li>
-              <li>在线询价表单</li>
-              <li>API 接口对接</li>
-              <li>专属客服支持</li>
-            </ul>
-            <button class="btn btn-primary" style="width:100%;margin-top:18px" onclick="alert('演示模式，暂不支持购买')">立即开通</button>
-          </div>
-          <div class="price-card">
-            <div class="price-label">企业版</div>
-            <div class="price"><sup>¥</sup>699<span>/月</span></div>
-            <ul>
-              <li>全部商业版功能</li>
-              <li>AI 智能助手</li>
-              <li>自定义品牌域名</li>
-              <li>多用户权限管理</li>
-              <li>优先响应支持</li>
-            </ul>
-            <button class="btn btn-ghost" style="width:100%;margin-top:18px" onclick="alert('演示模式，暂不支持购买')">联系我们</button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-box">
-          <div class="contact-info">
-            <div class="section-kicker">📞 联系我们</div>
-            <h3 style="margin-top:14px">获取报价或接入后端</h3>
-            <p>准备好接入真实物流 API、CRM 或 AI 助手了吗？留下您的需求，我们的技术团队将在 24 小时内响应。</p>
-            <div style="margin-top:24px;display:grid;gap:10px">
-              <div style="display:flex;align-items:center;gap:10px;color:var(--muted)">
-                <span style="color:var(--primary)">✉</span> support@loginexa.com
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;color:var(--muted)">
-                <span style="color:var(--primary)">📍</span> 深圳市南山区粤海街道科技园
-              </div>
-              <div style="display:flex;align-items:center;gap:10px;color:var(--muted)">
-                <span style="color:var(--primary)">🕐</span> 周一至周五 09:00–18:00
-              </div>
-            </div>
-          </div>
-          <form class="quote-form" onsubmit="submitQuote(event)">
-            <input type="text" placeholder="您的姓名" required />
-            <input type="email" placeholder="邮箱地址" required />
-            <input type="text" placeholder="物流路线，如 深圳 → 洛杉矶" required />
-            <textarea placeholder="详细需求描述（选填）" rows="4"></textarea>
-            <button class="btn btn-primary" type="submit" style="width:100%">提交咨询</button>
-          </form>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <strong style="font-size:17px;color:var(--text)">LogiNexa</strong>
-        <p>智能物流 SaaS 平台 · © 2026</p>
-      </div>
-      <div class="footer-links">
-        <a href="#features">功能</a>
-        <a href="#workflow">流程</a>
-        <a href="#pricing">方案</a>
-        <a href="#contact">联系</a>
       </div>
     </div>
-  </footer>
+  </div>
+</div>
 
-  <script src="app.js"></script>
-  <script>
-    // 星空背景
-    const starsEl = document.getElementById('stars');
-    for (let i = 0; i < 80; i++) {
-      const dot = document.createElement('div');
-      dot.className = 'star-dot';
-      dot.style.cssText = `
-        left:${Math.random()*100}%;
-        top:${Math.random()*100}%;
-        width:${Math.random()*2+1}px;
-        height:${Math.random()*2+1}px;
-        --d:${(Math.random()*3+2).toFixed(1)}s;
-        animation-delay:${(Math.random()*3).toFixed(1)}s;
-      `;
-      starsEl.appendChild(dot);
-    }
+<!-- 流程 -->
+<div class="section process-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>服务流程</h2>
+      <p>简单四步，轻松完成跨境发货</p>
+    </div>
+    <div class="process-grid">
+      <div class="process-item">
+        <div class="process-num">1</div>
+        <h4>提交订单</h4>
+        <p>在线填写发货信息，预付运费，获取运单号</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <h4>上门揽收</h4>
+        <p>预约时间，快递员上门取件，支持全国上门服务</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <h4>国际运输</h4>
+        <p>专业清关团队，双清包税，实时轨迹追踪</p>
+      </div>
+      <div class="process-item">
+        <div class="process-num">4</div>
+        <h4>送达签收</h4>
+        <p>目的地派送上门，买家确认签收，服务完成</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    // 滚动进入动画
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(el => {
-        if (el.isIntersecting) {
-          el.target.style.opacity = '1';
-          el.target.style.transform = 'translateY(0)';
-        }
-      });
-    }, { threshold: 0.1 });
+<!-- 为什么选我们 -->
+<div class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>为什么选择 LogiTrans</h2>
+      <p>专业、高效、值得信赖的物流伙伴</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">🚀</div>
+        <h4>极速时效</h4>
+        <p>全球主要城市 3-7 天到达，优先航班保障，延误必赔承诺。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h4>安全可靠</h4>
+        <p>全链路保险覆盖，丢件包赔，数据全程加密，隐私有保障。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💰</div>
+        <h4>价格透明</h4>
+        <p>无隐藏费用，在线实时报价，支持多币种结算，账期灵活。</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    document.querySelectorAll('.feature-card,.price-card,.step,.metric').forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
-      observer.observe(el);
-    });
-  </script>
+<!-- 底部 -->
+<footer class="footer">
+  <div>
+    <strong>LogiTrans</strong>
+    <p class="footer-copy">连接全球，传递信任</p>
+  </div>
+  <div class="footer-links">
+    <a href="#services">服务</a>
+    <a href="#process">流程</a>
+    <a href="#about">关于</a>
+  </div>
+  <div>
+    <p style="font-size:13px">© 2026 LogiTrans 物流有限公司</p>
+  </div>
+</footer>
+
+<script>
+function track(){
+  var num = document.getElementById('num').value.trim();
+  if(!num){
+    alert('请输入运单号');
+    return;
+  }
+  window.location.href = 'tracking.html?num=' + encodeURIComponent(num);
+}
+</script>
+
 </body>
 </html>
