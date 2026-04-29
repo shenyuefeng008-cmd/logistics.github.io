@@ -55,24 +55,26 @@ img{max-width:100%;display:block;border-radius:8px}
 
 /* ── Hero ── */
 .hero{
-  background:linear-gradient(135deg,var(--blue) 0%,var(--blue-light) 100%);
+  background:linear-gradient(135deg,rgba(7,11,20,.75) 0%,rgba(7,11,20,.65) 100%),url(images/banner.png) center/cover no-repeat;
   padding:70px 40px;
-  display:flex;align-items:center;justify-content:space-between;
+  display:flex;align-items:center;justify-content:flex-start;
   gap:40px;
   position:relative;overflow:hidden;
+  min-height:480px;
 }
 .hero::before{
   content:'';position:absolute;right:-60px;top:-60px;
   width:400px;height:400px;border-radius:50%;
   background:rgba(255,255,255,.06);
 }
-.hero-left{max-width:520px;position:relative;z-index:1}
+.hero-left{max-width:600px;position:relative;z-index:1}
 .hero h1{
   font-size:clamp(30px,4vw,46px);
   line-height:1.15;margin-bottom:16px;
   letter-spacing:-.03em;
+  text-shadow:0 2px 20px rgba(0,0,0,.6);
 }
-.hero p{color:rgba(255,255,255,.82);font-size:17px;margin-bottom:28px;line-height:1.7}
+.hero p{color:rgba(255,255,255,.9);font-size:17px;margin-bottom:28px;line-height:1.7;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 
 .track-box{
   background:var(--white);border-radius:16px;
@@ -94,12 +96,7 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .track-box button:hover{background:var(--blue-light)}
 
-.hero-pic{
-  width:380px;flex-shrink:0;
-  border-radius:16px;overflow:hidden;
-  box-shadow:var(--shadow);
-}
-.hero-pic img{width:100%;height:320px;object-fit:cover;border-radius:16px}
+/* .hero-pic{display:none} */
 
 /* ── 数据 ── */
 .stats-row{
