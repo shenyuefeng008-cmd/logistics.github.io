@@ -31,26 +31,28 @@
       <button onclick="track()">立即查询</button>
     </div>
   </div>
-  <!-- <div class="hero-pic">
-    <img src="images/banner.png" alt="物流运输">
-  </div> --></div>
+</div>
 
 <!-- 数据 -->
-<div class="stats-row">
+<div class="stats-row" id="stats-row">
   <div class="stat-item">
-    <strong>220+</strong>
+    <div class="stat-icon">🌍</div>
+    <strong class="stat-num" data-target="220" data-suffix="+">0</strong>
     <span>覆盖国家</span>
   </div>
   <div class="stat-item">
-    <strong>150万+</strong>
+    <div class="stat-icon">📦</div>
+    <strong class="stat-num" data-target="150" data-suffix="万+" data-mult="10000">0</strong>
     <span>日处理包裹</span>
   </div>
   <div class="stat-item">
-    <strong>99.5%</strong>
+    <div class="stat-icon">⏱️</div>
+    <strong class="stat-num" data-target="99.5" data-suffix="%">0</strong>
     <span>准时率</span>
   </div>
   <div class="stat-item">
-    <strong>5000+</strong>
+    <div class="stat-icon">🤝</div>
+    <strong class="stat-num" data-target="5000" data-suffix="+">0</strong>
     <span>合作客户</span>
   </div>
 </div>
@@ -170,16 +172,6 @@
   </div>
 </footer>
 
-<script>
-function track(){
-  var num = document.getElementById('num').value.trim();
-  if(!num){
-    alert('请输入运单号');
-    return;
-  }
-  window.location.href = 'tracking.html?num=' + encodeURIComponent(num);
-}
-</script>
-
+<script src="app.js"></script>
 </body>
 </html>
