@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>LogiNexa</title></head>
+<body><h1>LogiNexa Logistics</h1>
+<input id="num" placeholder="Enter tracking number">
+<button onclick="track()">Track</button>
+<script>
+function track(){
+ let num=document.getElementById("num").value;
+ if(!num){alert("Enter number");return;}
+ window.location.href="tracking.html?num="+num;
+}
+</script>
+</body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><title>Tracking</title></head>
+<body><h1>Tracking Result</h1>
+<div id="result"></div>
+<script>
+const params=new URLSearchParams(window.location.search);
+const num=params.get("num");
+document.getElementById("result").innerHTML="Tracking: "+num;
+</script>
+</body></html>
