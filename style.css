@@ -69,10 +69,11 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .hero-left{max-width:600px;position:relative;z-index:1}
 .hero h1{
+  color:#fff;
   font-size:clamp(30px,4vw,46px);
   line-height:1.15;margin-bottom:16px;
   letter-spacing:-.03em;
-  text-shadow:0 2px 20px rgba(0,0,0,.6);
+  text-shadow:0 2px 30px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.5);
 }
 .hero p{color:rgba(255,255,255,.9);font-size:17px;margin-bottom:28px;line-height:1.7;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 
