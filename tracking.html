@@ -1,10 +1,109 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><title>Tracking</title></head>
-<body><h1>Tracking Result</h1>
-<div id="result"></div>
-<script>
-const params=new URLSearchParams(window.location.search);
-const num=params.get("num");
-document.getElementById("result").innerHTML="Tracking: "+num;
-</script>
-</body></html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>追踪结果 | LogiNexa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="index.html">
+        <div class="brand-mark">LN</div>
+        <div class="brand-text">
+          <strong>LogiNexa</strong>
+          <small>智能物流</small>
+        </div>
+      </a>
+      <a class="btn btn-ghost" href="index.html">← 返回首页</a>
+    </div>
+  </header>
+
+  <main class="section" style="padding-top:110px">
+    <div class="container">
+      <div class="section-head" style="margin-bottom:32px">
+        <div class="section-kicker">📦 追踪结果</div>
+        <h2 style="margin:14px 0 10px">包裹物流轨迹</h2>
+        <p style="color:var(--muted)">完整的运输时间线，实时状态透明可见。</p>
+      </div>
+
+      <div class="result-summary">
+        <div class="summary-card">
+          <small>运单号</small>
+          <h3 id="trackingNum">—</h3>
+        </div>
+        <div class="summary-card">
+          <small>当前状态</small>
+          <h3 style="color:var(--success)">运输中</h3>
+        </div>
+        <div class="summary-card">
+          <small>预计送达</small>
+          <h3>2–4 天</h3>
+        </div>
+      </div>
+
+      <div class="timeline-card">
+        <div class="timeline" id="timeline"></div>
+      </div>
+
+      <div style="margin-top:28px;display:flex;gap:14px;flex-wrap:wrap">
+        <a class="btn btn-primary" href="index.html#track">继续查询</a>
+        <a class="btn btn-ghost" href="index.html#contact">联系客服</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // 星空背景
+    var starsEl = document.getElementById('stars');
+    for (var i = 0; i < 50; i++) {
+      var dot = document.createElement('div');
+      dot.className = 'star-dot';
+      dot.style.cssText =
+        'left:' + (Math.random()*100) + '%;' +
+        'top:' + (Math.random()*100) + '%;' +
+        'width:' + (Math.random()*2+1) + 'px;' +
+        'height:' + (Math.random()*2+1) + 'px;' +
+        '--d:' + (Math.random()*3+2).toFixed(1) + 's;' +
+        'animation-delay:' + (Math.random()*3).toFixed(1) + 's;';
+      starsEl.appendChild(dot);
+    }
+
+    // 解析运单号
+    var params = new URLSearchParams(window.location.search);
+    var num = params.get("num") || "LN-260429-001";
+    document.getElementById("trackingNum").textContent = num;
+
+    // 物流时间线（演示数据）
+    var events = [
+      { time: "2026-04-27 09:20", title: "订单创建", desc: "包裹信息已录入物流系统，等待揽收。" },
+      { time: "2026-04-27 15:10", title: "已揽收", desc: "快递员已从发件人仓库取走包裹。" },
+      { time: "2026-04-28 08:35", title: "国内运输中", desc: "包裹已转移至国际分拨枢纽。" },
+      { time: "2026-04-29 12:00", title: "清关处理中", desc: "包裹正在通过海关检验检疫。" },
+      { time: "2026-04-30 06:00", title: "国际运输中", desc: "包裹已装机，飞往目的地国家。" }
+    ];
+
+    var timeline = document.getElementById("timeline");
+    var html = '';
+    for (var i = 0; i < events.length; i++) {
+      var item = events[i];
+      var currentClass = i === events.length - 1 ? 'current' : '';
+      html += '<div class="timeline-item ' + currentClass + '">' +
+        '<div class="timeline-dot"></div>' +
+        '<div class="timeline-content">' +
+          '<div class="timeline-time">' + item.time + '</div>' +
+          '<h4>' + item.title + '</h4>' +
+          '<p>' + item.desc + '</p>' +
+        '</div>' +
+      '</div>';
+    }
+    timeline.innerHTML = html;
+  </script>
+</body>
+</html>
