@@ -1,0 +1,14 @@
+# robots.txt for LogiExpress
+# Allow all crawlers (including Baiduspider)
+User-agent: *
+Allow: /
+Disallow: /assets/
+Disallow: /private/
+
+# Explicitly welcome Baidu spider
+User-agent: Baiduspider
+Allow: /
+Disallow: /assets/
+
+# Sitemap location
+Sitemap: https://shenyuefeng008-cmd.github.io/logistics.github.io/sitemap.xml
