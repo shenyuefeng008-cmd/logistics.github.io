@@ -67,21 +67,29 @@
     <div class="quote-form">
       <div class="quote-field">
         <label>起运地</label>
-        <select><option>选择起运地</option><option>深圳</option><option>广州</option><option>上海</option><option>义乌</option></select>
+        <select id="q-origin"><option value="">选择起运地</option><option>深圳</option><option>广州</option><option>上海</option><option>义乌</option></select>
       </div>
       <div class="quote-field">
         <label>目的地</label>
-        <select><option>选择目的地</option><option>美国</option><option>英国</option><option>德国</option><option>日本</option></select>
+        <select id="q-dest"><option value="">选择目的地</option><option>美国</option><option>英国</option><option>德国</option><option>法国</option><option>日本</option><option>韩国</option><option>澳大利亚</option><option>加拿大</option></select>
       </div>
       <div class="quote-field">
         <label>货物类型</label>
-        <select><option>请选择货物类型</option><option>普通货物</option><option>带电产品</option><option>敏感货</option></select>
+        <select id="q-type"><option value="">请选择货物类型</option><option>普通货物</option><option>带电产品</option><option>敏感货</option><option>大件货物</option></select>
       </div>
       <div class="quote-field">
         <label>重量 (KG)</label>
-        <input type="number" placeholder="请输入重量">
+        <input type="number" id="q-weight" placeholder="请输入重量">
       </div>
-      <button class="btn-quote">📋 立即获取报价</button>
+      <button class="btn-quote" onclick="getQuote()">📋 立即获取报价</button>
+    </div>
+    <div id="quote-result" style="display:none">
+      <div id="quote-plans" class="quote-plans"></div>
+      <div class="quote-submit">
+        <input type="text" id="qs-name" placeholder="您的姓名">
+        <input type="text" id="qs-contact" placeholder="手机号 / 微信 / 邮箱">
+        <button class="btn-quote" onclick="submitQuoteInquiry()">📩 提交询价，专属客服联系您</button>
+      </div>
     </div>
     <p class="quote-note">提交后专属客服将快速与您联系</p>
   </div>
