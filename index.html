@@ -208,6 +208,34 @@
   </div>
 </footer>
 
+<!-- AI 客服浮窗 -->
+<div id="ai-chat-widget" class="ai-chat-widget">
+  <div class="ai-chat-header" onclick="toggleChat()">
+    <span>🤖 AI客服</span>
+    <span id="chat-toggle">−</span>
+  </div>
+  <div id="ai-chat-body" class="ai-chat-body">
+    <div id="ai-chat-messages" class="ai-chat-messages">
+      <div class="ai-msg bot">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-bubble">
+          您好！我是 LogiExpress AI 客服，可以帮您快速报价。<br>
+          例如：<em>"发美国 10kg 空运多少钱？"</em>
+        </div>
+      </div>
+    </div>
+    <div class="ai-chat-input">
+      <input type="text" id="ai-input" placeholder="输入您的问题..." onkeypress="if(event.key==='Enter')sendAI()">
+      <button onclick="sendAI()">发送</button>
+    </div>
+    <div class="ai-lead-form">
+      <input type="text" id="ai-name" placeholder="您的姓名">
+      <input type="text" id="ai-contact" placeholder="电话/微信/邮箱">
+      <button onclick="saveLead()" class="btn-lead">提交询价</button>
+    </div>
+  </div>
+</div>
+
 <script src="app.js"></script>
 </body>
 </html>
