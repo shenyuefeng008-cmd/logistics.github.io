@@ -118,6 +118,18 @@ img{max-width:100%;display:block}
 }
 .btn-quote:hover{background:var(--primary-light)}
 .quote-note{text-align:right;font-size:12px;color:var(--muted);margin-top:12px}
+.quote-plans{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:20px}
+.quote-plan{background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:20px 16px;text-align:center;position:relative;transition:all .2s}
+.quote-plan:hover{border-color:var(--primary);transform:translateY(-2px)}
+.quote-plan.featured{border-color:var(--primary);background:#f0f7ff}
+.quote-plan-tag{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--primary);color:#fff;font-size:11px;padding:2px 12px;border-radius:10px;font-weight:600}
+.quote-plan-name{font-size:15px;font-weight:600;margin-bottom:8px}
+.quote-plan-price{font-size:28px;font-weight:800;color:var(--primary);margin-bottom:6px}
+.quote-plan-detail{font-size:12px;color:var(--muted);margin-bottom:4px}
+.quote-plan-time{font-size:12px;color:var(--muted)}
+.quote-submit{display:flex;gap:10px;margin-top:20px;align-items:center}
+.quote-submit input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px}
+.quote-submit .btn-quote{flex:none;white-space:nowrap}
 
 /* ── 数据展示 ── */
 .stats-section{padding:50px 40px;background:var(--bg)}
@@ -270,6 +282,9 @@ img{max-width:100%;display:block}
   .quote-form{flex-direction:column}
   .quote-field{width:100%}
   .btn-quote{width:100%}
+  .quote-plans{grid-template-columns:1fr}
+  .quote-submit{flex-direction:column}
+  .quote-submit input,.quote-submit .btn-quote{width:100%}
   .stats-section{padding:30px 20px}
   .stats-grid{grid-template-columns:repeat(2,1fr)}
   .services-section{padding:40px 20px}
