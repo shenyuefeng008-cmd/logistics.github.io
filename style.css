@@ -34,6 +34,7 @@ img{max-width:100%;display:block}
 }
 .nav-brand{flex-shrink:0}
 .logo{display:flex;align-items:center;gap:10px}
+.logo-img{height:44px;width:auto;object-fit:contain}
 .logo-icon{width:36px;height:36px;flex-shrink:0}
 .logo-text{display:flex;flex-direction:column}
 .logo-text strong{font-size:18px;font-weight:800;color:var(--primary);letter-spacing:-.5px}
