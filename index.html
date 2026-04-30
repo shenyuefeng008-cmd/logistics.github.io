@@ -14,11 +14,11 @@
   <div class="logo">LogiTrans</div>
   <div class="menu">
     <a href="#">首页</a>
+    <a href="#quote">获取报价</a>
     <a href="#services">服务与价格</a>
     <a href="#process">解决方案</a>
-    <a href="#about">关于我们</a>
   </div>
-  <button class="btn-nav" onclick="alert('演示模式，暂不支持登录')">登录 / 注册</button>
+  <a href="#quote" class="btn-nav">立即咨询</a>
 </div>
 
 <!-- Banner -->
@@ -29,6 +29,10 @@
     <div class="track-box">
       <input id="num" type="text" placeholder="请输入运单号">
       <button onclick="track()">立即查询</button>
+    </div>
+    <div class="hero-btns">
+      <a href="#quote" class="btn-hero-primary">获取报价</a>
+      <a href="https://wa.me/8613800138000" target="_blank" class="btn-hero-outline">联系客服</a>
     </div>
   </div>
 </div>
@@ -55,6 +59,78 @@
     <strong class="stat-num" data-target="5000" data-suffix="+">0</strong>
     <span>合作客户</span>
   </div>
+  <div class="stat-item">
+    <div class="stat-icon">🏆</div>
+    <strong class="stat-num" data-target="10" data-suffix="年">0</strong>
+    <span>行业经验</span>
+  </div>
+  <div class="stat-item">
+    <div class="stat-icon">📋</div>
+    <strong class="stat-num" data-target="100" data-suffix="万+" data-mult="10000">0</strong>
+    <span>累计订单</span>
+  </div>
+</div>
+
+<!-- 报价模块 -->
+<div class="section quote-section" id="quote">
+  <div class="container">
+    <div class="section-header">
+      <h2>30秒获取运费报价</h2>
+      <p>输入基本信息，立即获取最优物流方案与价格</p>
+    </div>
+    <div class="quote-card">
+      <div class="quote-row">
+        <div class="quote-field">
+          <label>起运地</label>
+          <select id="q-origin">
+            <option value="">请选择起运城市</option>
+            <option>深圳</option>
+            <option>广州</option>
+            <option>上海</option>
+            <option>义乌</option>
+            <option>杭州</option>
+            <option>北京</option>
+            <option>厦门</option>
+            <option>其他</option>
+          </select>
+        </div>
+        <div class="quote-arrow">→</div>
+        <div class="quote-field">
+          <label>目的地</label>
+          <select id="q-dest">
+            <option value="">请选择目的国家</option>
+            <option>美国</option>
+            <option>英国</option>
+            <option>德国</option>
+            <option>法国</option>
+            <option>日本</option>
+            <option>韩国</option>
+            <option>澳大利亚</option>
+            <option>加拿大</option>
+            <option>其他国家</option>
+          </select>
+        </div>
+        <div class="quote-field">
+          <label>重量 (kg)</label>
+          <input type="number" id="q-weight" placeholder="如：5" min="0.1" step="0.1">
+        </div>
+        <button class="btn-quote" onclick="getQuote()">获取报价</button>
+      </div>
+      <div class="quote-result" id="quote-result" style="display:none">
+        <div class="quote-result-inner">
+          <div class="quote-result-title">为您推荐最优方案</div>
+          <div class="quote-plans" id="quote-plans"></div>
+          <p class="quote-tip">💬 价格仅供参考，实际以预报系统为准。咨询客服获取精确报价。</p>
+        </div>
+      </div>
+    </div>
+    <div class="quote-trust">
+      <span>✅ 免费询价</span>
+      <span>🔒 信息安全</span>
+      <span>⏱️ 30秒响应</span>
+      <span>📞 专业顾问1对1服务</span>
+    </div>
+  </div>
 </div>
 
 <!-- 服务 -->
@@ -70,6 +146,12 @@
         <div class="service-card-body">
           <h3>国际快递</h3>
           <p>全球主要城市 3-7 个工作日送达，门到门全程追踪，优先清关服务。</p>
+          <div class="service-tags">
+            <span class="tag">3-7天到达</span>
+            <span class="tag">门到门</span>
+            <span class="tag">全程追踪</span>
+          </div>
+          <a href="#quote" class="btn-service-cta">立即发货 →</a>
         </div>
       </div>
       <div class="service-card">
@@ -77,6 +159,12 @@
         <div class="service-card-body">
           <h3>国际专线</h3>
           <p>中美、中欧、中日专线稳定运营，双清包税，批量发货性价比更高。</p>
+          <div class="service-tags">
+            <span class="tag">双清包税</span>
+            <span class="tag">性价比高</span>
+            <span class="tag">批量优惠</span>
+          </div>
+          <a href="#quote" class="btn-service-cta">获取报价 →</a>
         </div>
       </div>
       <div class="service-card">
@@ -84,6 +172,12 @@
         <div class="service-card-body">
           <h3>海外仓储</h3>
           <p>美国、欧洲多地仓库布局，支持一件代发，退件处理，库存实时管理。</p>
+          <div class="service-tags">
+            <span class="tag">一件代发</span>
+            <span class="tag">退件处理</span>
+            <span class="tag">实时库存</span>
+          </div>
+          <a href="#quote" class="btn-service-cta">咨询仓储 →</a>
         </div>
       </div>
       <div class="service-card">
@@ -91,6 +185,12 @@
         <div class="service-card-body">
           <h3>末端配送</h3>
           <p>本地快递网络覆盖，次日达、当日达灵活可选，全程轨迹可查。</p>
+          <div class="service-tags">
+            <span class="tag">次日达</span>
+            <span class="tag">当日达</span>
+            <span class="tag">全程可查</span>
+          </div>
+          <a href="#quote" class="btn-service-cta">立即发货 →</a>
         </div>
       </div>
     </div>
@@ -126,6 +226,9 @@
         <p>目的地派送上门，买家确认签收，服务完成</p>
       </div>
     </div>
+    <div class="process-cta">
+      <a href="#quote" class="btn-hero-primary">开始发货 →</a>
+    </div>
   </div>
 </div>
 
@@ -152,20 +255,45 @@
         <h4>价格透明</h4>
         <p>无隐藏费用，在线实时报价，支持多币种结算，账期灵活。</p>
       </div>
+      <div class="why-card">
+        <div class="why-icon">📞</div>
+        <h4>专属客服</h4>
+        <p>7×24小时在线，微信/WhatsApp多渠道响应，平均30秒接通。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">💻</div>
+        <h4>智能系统</h4>
+        <p>一键下单、智能比价、批量预报，系统自动最优路由推荐。</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🏆</div>
+        <h4>10年品牌</h4>
+        <p>深耕跨境物流10年，服务Amazon、Shopify等5000+卖家，信誉保证。</p>
+      </div>
+    </div>
+    <div class="why-cta">
+      <a href="#quote" class="btn-hero-primary">获取专属报价</a>
+      <a href="https://wa.me/8613800138000" target="_blank" class="btn-hero-outline">在线咨询</a>
     </div>
   </div>
 </div>
 
 <!-- 底部 -->
 <footer class="footer">
-  <div>
+  <div class="footer-brand">
     <strong>LogiTrans</strong>
     <p class="footer-copy">连接全球，传递信任</p>
+    <div class="footer-contact">
+      <span>📞 400-888-8888</span>
+      <span>✉️ hello@logitrans.com</span>
+      <span>💬 WhatsApp: +86 138 0013 8000</span>
+    </div>
   </div>
   <div class="footer-links">
+    <a href="#">首页</a>
+    <a href="#quote">获取报价</a>
     <a href="#services">服务</a>
     <a href="#process">流程</a>
-    <a href="#about">关于</a>
   </div>
   <div>
     <p style="font-size:13px">© 2026 LogiTrans 物流有限公司</p>
