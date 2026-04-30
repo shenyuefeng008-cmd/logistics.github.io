@@ -1,3 +1,99 @@
+// ── AI 客服 ──
+const API_BASE = 'http://localhost:3000'; // 部署后改成实际地址
+
+function toggleChat(){
+  const body = document.getElementById('ai-chat-body');
+  const toggle = document.getElementById('chat-toggle');
+  body.classList.toggle('hidden');
+  toggle.textContent = body.classList.contains('hidden') ? '+' : '−';
+}
+
+function appendAI(role, text){
+  const box = document.getElementById('ai-chat-messages');
+  const div = document.createElement('div');
+  div.className = 'ai-msg ' + role;
+  div.innerHTML = role === 'bot' 
+    ? '<div class="ai-avatar">🤖</div><div class="ai-bubble">' + text + '</div>'
+    : '<div class="ai-bubble">' + text + '</div><div class="ai-avatar">👤</div>';
+  box.appendChild(div);
+  box.scrollTop = box.scrollHeight;
+}
+
+async function sendAI(){
+  const input = document.getElementById('ai-input');
+  const text = input.value.trim();
+  if(!text) return;
+  appendAI('user', text);
+  input.value = '';
+
+  // 本地解析（无需后端也能用）
+  const parsed = parseMessageLocal(text);
+  const price = calculatePriceLocal(parsed);
+  
+  const reply = '预估报价：<strong>$' + price + '</strong><br>（' + parsed.type + '，' + parsed.country + '，' + parsed.weight + 'kg）<br>需要我帮您提交询价或联系销售吗？';
+  
+  appendAI('bot', reply);
+  window.__lastQuote = { parsed, price };
+}
+
+function parseMessageLocal(msg){
+  const text = (msg || '').toLowerCase();
+  let weight = 10;
+  let type = '国际快递';
+  let country = '美国';
+  
+  const wMatch = text.match(/(\d+(?:\.\d+)?)\s*(kg|公斤)?/);
+  if(wMatch) weight = parseFloat(wMatch[1]);
+  
+  if(text.includes('空运')) type = '国际空运';
+  if(text.includes('海运')) type = '美森海运';
+  if(text.includes('快递')) type = '国际快递';
+  if(text.includes('专线')) type = '专线物流';
+  
+  if(text.includes('美国') || text.includes('usa')) country = '美国';
+  if(text.includes('欧洲') || text.includes('eu')) country = '欧洲';
+  if(text.includes('日本') || text.includes('jp')) country = '日本';
+  if(text.includes('英国')) country = '英国';
+  if(text.includes('德国')) country = '德国';
+  
+  return { weight, type, country };
+}
+
+function calculatePriceLocal({weight, country, type}){
+  const baseMap = { '国际快递': 8, '国际空运': 5, '美森海运': 2, '专线物流': 3 };
+  const factorMap = { '美国': 1.2, '欧洲': 1.5, '日本': 1.1, '英国': 1.3, '德国': 1.4 };
+  const base = baseMap[type] || 8;
+  const factor = factorMap[country] || 1.0;
+  return Math.round(weight * base * factor);
+}
+
+async function saveLead(){
+  const name = document.getElementById('ai-name').value.trim();
+  const contact = document.getElementById('ai-contact').value.trim();
+  
+  if(!contact){ appendAI('bot', '请至少留下一种联系方式哦~'); return; }
+  
+  const payload = { name: name || '匿名', contact, quote: window.__lastQuote || null, time: new Date().toISOString() };
+  
+  // 尝试发送到后端（如果有）
+  try{
+    await fetch(API_BASE + '/lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  }catch(e){ /* 后端未部署时忽略 */ }
+  
+  // 同时保存到本地（演示用）
+  const leads = JSON.parse(localStorage.getItem('logi_leads') || '[]');
+  leads.push(payload);
+  localStorage.setItem('logi_leads', JSON.stringify(leads));
+  
+  appendAI('bot', '✅ 已提交！专属客服会尽快联系您。');
+  document.getElementById('ai-name').value = '';
+  document.getElementById('ai-contact').value = '';
+}
+
 // 运单查询
 function track(){
   var num = document.getElementById('num').value.trim();
