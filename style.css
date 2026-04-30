@@ -21,7 +21,7 @@ body{
 }
 
 a{text-decoration:none;color:inherit}
-button,input{font-family:inherit;outline:none}
+button,input,select{font-family:inherit;outline:none}
 img{max-width:100%;display:block;border-radius:8px}
 .container{width:min(1200px,calc(100% - 80px));margin:0 auto}
 
@@ -37,7 +37,7 @@ img{max-width:100%;display:block;border-radius:8px}
   font-size:22px;font-weight:800;color:var(--blue);
   letter-spacing:-.5px;
 }
-.menu{display:flex;gap:8px}
+.menu{display:flex;gap:4px}
 .menu a{
   padding:8px 16px;border-radius:var(--radius);
   color:var(--text);font-size:15px;font-weight:500;
@@ -49,7 +49,7 @@ img{max-width:100%;display:block;border-radius:8px}
   padding:10px 20px;border-radius:var(--radius);
   font-weight:600;font-size:14px;
   border:none;cursor:pointer;
-  transition:all .2s;
+  transition:all .2s;display:inline-block;text-align:center;
 }
 .btn-nav:hover{background:var(--blue-light);transform:translateY(-1px)}
 
@@ -60,7 +60,7 @@ img{max-width:100%;display:block;border-radius:8px}
   display:flex;align-items:center;justify-content:flex-start;
   gap:40px;
   position:relative;overflow:hidden;
-  min-height:480px;
+  min-height:520px;
 }
 .hero::before{
   content:'';position:absolute;right:-60px;top:-60px;
@@ -69,17 +69,19 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .hero-left{max-width:600px;position:relative;z-index:1}
 .hero h1{
+  color:#fff;
   font-size:clamp(30px,4vw,46px);
   line-height:1.15;margin-bottom:16px;
   letter-spacing:-.03em;
-  text-shadow:0 2px 20px rgba(0,0,0,.6);
+  text-shadow:0 2px 30px rgba(0,0,0,.8),0 0 40px rgba(0,0,0,.5);
 }
-.hero p{color:rgba(255,255,255,.9);font-size:17px;margin-bottom:28px;line-height:1.7;text-shadow:0 1px 10px rgba(0,0,0,.5)}
+.hero p{color:rgba(255,255,255,.9);font-size:17px;margin-bottom:24px;line-height:1.7;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 
 .track-box{
   background:var(--white);border-radius:16px;
   padding:20px;display:flex;gap:10px;
   box-shadow:var(--shadow);
+  margin-bottom:20px;
 }
 .track-box input{
   flex:1;min-width:0;border:1px solid var(--border);
@@ -96,76 +98,162 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .track-box button:hover{background:var(--blue-light)}
 
-/* .hero-pic{display:none} */
+/* Hero CTA 按钮 */
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn-hero-primary{
+  background:var(--blue);color:var(--white);
+  padding:12px 28px;border-radius:10px;
+  font-weight:600;font-size:15px;
+  display:inline-block;text-align:center;
+  transition:all .2s;cursor:pointer;border:none;
+}
+.btn-hero-primary:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(11,61,145,.3)}
+.btn-hero-outline{
+  background:rgba(255,255,255,.12);
+  color:#fff;border:2px solid rgba(255,255,255,.5);
+  padding:10px 26px;border-radius:10px;
+  font-weight:600;font-size:15px;
+  display:inline-block;text-align:center;
+  backdrop-filter:blur(4px);
+  transition:all .2s;
+}
+.btn-hero-outline:hover{background:rgba(255,255,255,.22);border-color:#fff;transform:translateY(-2px)}
 
 /* ── 数据 ── */
 .stats-row{
-  display:grid;grid-template-columns:repeat(4,1fr);
+  display:grid;grid-template-columns:repeat(6,1fr);
   background:var(--white);
-  margin:-28px 40px 0;padding:24px 32px;
+  margin:-28px 40px 0;padding:20px 24px;
   border-radius:16px;
   box-shadow:var(--shadow);
   position:relative;z-index:2;
 }
 .stat-item{
-  text-align:center;padding:8px 0;
+  text-align:center;padding:8px 4px;
   border-right:1px solid var(--border);
   transition:all .3s ease;
   opacity:0;transform:translateY(20px);
   position:relative;
 }
 .stat-item:last-child{border-right:none}
-.stat-item.visible{
-  animation:fadeSlideUp .5s ease forwards;
-}
+.stat-item.visible{animation:fadeSlideUp .5s ease forwards}
 .stat-item:nth-child(1).visible{animation-delay:0s}
-.stat-item:nth-child(2).visible{animation-delay:.12s}
-.stat-item:nth-child(3).visible{animation-delay:.24s}
-.stat-item:nth-child(4).visible{animation-delay:.36s}
+.stat-item:nth-child(2).visible{animation-delay:.1s}
+.stat-item:nth-child(3).visible{animation-delay:.2s}
+.stat-item:nth-child(4).visible{animation-delay:.3s}
+.stat-item:nth-child(5).visible{animation-delay:.4s}
+.stat-item:nth-child(6).visible{animation-delay:.5s}
 .stat-item:hover{
-  transform:translateY(-6px) scale(1.04);
-  box-shadow:0 12px 40px rgba(11,61,145,.18);
-  border-radius:12px;
+  transform:translateY(-4px) scale(1.03);
+  box-shadow:0 10px 30px rgba(11,61,145,.15);
+  border-radius:10px;
   background:linear-gradient(135deg,var(--blue-soft),#fff);
   border-color:transparent;
   cursor:default;
 }
 .stat-item:hover .stat-num{color:var(--blue-light)}
 .stat-icon{
-  font-size:28px;margin-bottom:6px;display:block;
+  font-size:24px;margin-bottom:4px;display:block;
   animation:bounceIn .6s ease;
 }
-.stat-item:hover .stat-icon{animation:bounceIn .6s ease}
 .stat-num{
-  display:block;font-size:30px;font-weight:800;
+  display:block;font-size:26px;font-weight:800;
   color:var(--blue);letter-spacing:-.03em;
   transition:color .3s ease;
   margin-bottom:2px;
 }
-.stat-item span{color:var(--muted);font-size:14px;display:block}
+.stat-item span{color:var(--muted);font-size:13px;display:block}
 
 @keyframes fadeSlideUp{
   from{opacity:0;transform:translateY(20px)}
   to{opacity:1;transform:translateY(0)}
 }
 @keyframes bounceIn{
-  0%{transform:scale(0.5);opacity:0}
-  60%{transform:scale(1.15)}
-  100%{transform:scale(1);opacity:1}
+  0%{transform:scale(0.5);opacity:0}60%{transform:scale(1.15)}100%{transform:scale(1);opacity:1}
 }
 
-/* ── 通用标题 ── */
-.section{padding:60px 0}
-.section-header{
-  text-align:center;margin-bottom:40px;
+/* ── 报价模块 ── */
+.quote-section{background:var(--white);padding:70px 0}
+.quote-card{
+  background:var(--bg);
+  border:2px solid var(--border);
+  border-radius:20px;
+  padding:32px 36px;
+  max-width:900px;
+  margin:0 auto 20px;
 }
-.section-header h2{
-  font-size:clamp(26px,3.5vw,36px);
-  letter-spacing:-.02em;margin:12px 0 10px;
+.quote-row{
+  display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap;
 }
-.section-header p{color:var(--muted);font-size:16px}
+.quote-field{
+  flex:1;min-width:160px;
+  display:flex;flex-direction:column;gap:6px;
+}
+.quote-field label{
+  font-size:13px;font-weight:600;color:var(--text);
+}
+.quote-field select,.quote-field input{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  font-size:15px;
+  background:var(--white);
+  transition:border-color .2s;
+  width:100%;
+}
+.quote-field select:focus,.quote-field input:focus{
+  border-color:var(--blue);box-shadow:0 0 0 3px rgba(11,61,145,.1);
+}
+.quote-arrow{
+  font-size:22px;color:var(--blue);font-weight:700;
+  padding-bottom:10px;flex-shrink:0;
+}
+.btn-quote{
+  background:var(--blue);color:var(--white);
+  border:none;border-radius:10px;
+  padding:13px 32px;font-size:15px;font-weight:700;
+  cursor:pointer;white-space:nowrap;
+  transition:all .2s;flex-shrink:0;
+  align-self:flex-end;
+}
+.btn-quote:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 6px 20px rgba(11,61,145,.3)}
 
-/* ── 服务卡片 ── */
+/* 报价结果 */
+.quote-result{
+  margin-top:24px;
+  border-top:1px dashed var(--border);
+  padding-top:24px;
+}
+.quote-result-inner{max-width:700px;margin:0 auto;text-align:center}
+.quote-result-title{
+  font-size:18px;font-weight:700;color:var(--blue);margin-bottom:16px;
+}
+.quote-plans{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:12px;
+  margin-bottom:14px;
+}
+.quote-plan{
+  background:var(--white);border:2px solid var(--blue-soft);
+  border-radius:14px;padding:18px 14px;
+  transition:all .2s;cursor:pointer;
+}
+.quote-plan:hover{border-color:var(--blue);transform:translateY(-2px);box-shadow:var(--shadow)}
+.quote-plan.featured{
+  border-color:var(--blue);
+  background:linear-gradient(135deg,var(--blue-soft),#fff);
+}
+.quote-plan-name{font-size:14px;color:var(--muted);margin-bottom:4px}
+.quote-plan-price{font-size:22px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.quote-plan-time{font-size:13px;color:var(--muted)}
+.quote-tip{font-size:13px;color:var(--muted)}
+
+.quote-trust{
+  display:flex;justify-content:center;gap:32px;flex-wrap:wrap;
+  font-size:14px;color:var(--muted);
+}
+.quote-trust span{white-space:nowrap}
+
+/* ── 服务模块 ── */
 .services-grid{
   display:grid;grid-template-columns:repeat(4,1fr);
   gap:20px;
@@ -187,7 +275,21 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .service-card-body{padding:20px}
 .service-card h3{font-size:18px;margin-bottom:8px}
-.service-card p{color:var(--muted);font-size:14px;line-height:1.7}
+.service-card p{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:12px}
+.service-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.tag{
+  background:var(--blue-soft);color:var(--blue);
+  font-size:12px;padding:3px 10px;border-radius:20px;
+  font-weight:500;
+}
+.btn-service-cta{
+  display:block;text-align:center;
+  background:var(--blue);color:var(--white);
+  padding:9px 0;border-radius:8px;
+  font-size:14px;font-weight:600;
+  transition:all .2s;
+}
+.btn-service-cta:hover{background:var(--blue-light)}
 
 /* ── 流程 ── */
 .process-section{background:var(--white)}
@@ -216,6 +318,7 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .process-item h4{font-size:17px;margin-bottom:8px}
 .process-item p{color:var(--muted);font-size:14px}
+.process-cta{text-align:center;margin-top:36px}
 
 /* ── 为什么选我们 ── */
 .why-grid{
@@ -234,32 +337,60 @@ img{max-width:100%;display:block;border-radius:8px}
 }
 .why-card h4{font-size:18px;margin-bottom:8px}
 .why-card p{color:var(--muted);font-size:14px;line-height:1.75}
+.why-cta{
+  display:flex;justify-content:center;gap:16px;margin-top:36px;flex-wrap:wrap;
+}
+
+/* ── 通用标题 ── */
+.section{padding:60px 0}
+.section-header{
+  text-align:center;margin-bottom:40px;
+}
+.section-header h2{
+  font-size:clamp(26px,3.5vw,36px);
+  letter-spacing:-.02em;margin:12px 0 10px;
+}
+.section-header p{color:var(--muted);font-size:16px}
 
 /* ── 底部 ── */
 .footer{
   background:linear-gradient(135deg,var(--blue),var(--blue-light));
   color:rgba(255,255,255,.85);
   padding:32px 40px;
-  display:flex;justify-content:space-between;align-items:center;
+  display:flex;justify-content:space-between;align-items:flex-start;
   gap:20px;
 }
 .footer-brand strong{font-size:20px;color:#fff;display:block;margin-bottom:4px}
-.footer-links{display:flex;gap:20px}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
 .footer-links a{color:rgba(255,255,255,.7);font-size:14px;transition:color .2s}
 .footer-links a:hover{color:#fff}
 .footer-copy{font-size:13px;margin-top:6px}
+.footer-contact{
+  display:flex;flex-direction:column;gap:4px;
+  margin-top:10px;font-size:13px;color:rgba(255,255,255,.8);
+}
 
 /* ── 响应式 ── */
-@media(max-width:1024px){
+@media(max-width:1100px){
+  .stats-row{grid-template-columns:repeat(3,1fr);margin:-20px 20px 0}
+  .stats-row .stat-item:nth-child(3){border-right:none}
+}
+@media(max-width:900px){
+  .quote-row{gap:12px}
+  .quote-field{min-width:140px}
+  .quote-arrow{display:none}
+  .quote-plans{grid-template-columns:1fr;gap:10px}
+}
+@media(max-width:768px){
   .hero{flex-direction:column;text-align:center;padding:50px 40px}
   .hero-left{max-width:100%}
-  .track-box{max-width:500px;margin:0 auto;flex-wrap:wrap}
-  .hero-pic{width:100%;max-width:500px}
+  .track-box{max-width:500px;margin:0 auto 20px;flex-wrap:wrap}
+  .hero-btns{justify-content:center}
   .services-grid,.process-grid{grid-template-columns:repeat(2,1fr)}
   .process-item::after{display:none}
-  .why-grid{grid-template-columns:1fr}
-  .stats-row{grid-template-columns:repeat(2,1fr);gap:16px}
-  .stats-row .stat-item:nth-child(2){border-right:none}
+  .why-grid{grid-template-columns:1fr 1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr);gap:0}
+  .stats-row .stat-item:nth-child(2n){border-right:none}
 }
 @media(max-width:640px){
   .menu{display:none}
@@ -268,5 +399,10 @@ img{max-width:100%;display:block;border-radius:8px}
   .container{width:calc(100% - 40px)}
   .stats-row{margin:-20px 20px 0;grid-template-columns:1fr 1fr}
   .services-grid{grid-template-columns:1fr}
-  .footer{text-align:center}
+  .why-grid{grid-template-columns:1fr}
+  .quote-card{padding:20px 16px}
+  .quote-field{min-width:100%}
+  .btn-quote{width:100%}
+  .footer{text-align:center;align-items:center}
+  .footer-brand,.footer-links{margin:0 auto}
 }
