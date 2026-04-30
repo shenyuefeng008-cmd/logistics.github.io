@@ -1,5 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80">
-  <rect width="200" height="80" fill="#003A70" rx="8"/>
-  <text x="50%" y="35" text-anchor="middle" font-family="Arial Black,sans-serif" font-size="20" font-weight="900" fill="white">MATSON</text>
-  <text x="50%" y="58" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="600" fill="#00B060" letter-spacing="1">美森轮船 · 放心之选</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 50">
+  <text x="10" y="28" font-family="Arial Black,sans-serif" font-size="18" font-weight="900" fill="#003A70">Matson</text>
+  <text x="10" y="42" font-family="Arial,sans-serif" font-size="9" fill="#0072CE">美森轮船 · MATSON NAVIGATION</text>
 </svg>
