@@ -1,13 +1,14 @@
 :root{
-  --blue:#0b3d91;
+  --blue:#0057B8;
   --blue-light:#1e5eff;
-  --blue-soft:#e8eefa;
+  --blue-soft:#dce8fa;
+  --orange:#FF6B00;
   --bg:#f5f7fb;
   --white:#fff;
   --text:#1a1a2e;
   --muted:#6b7280;
   --border:#e5e7eb;
-  --shadow:0 8px 30px rgba(11,61,145,.10);
+  --shadow:0 8px 30px rgba(0,87,184,.10);
   --radius:12px;
 }
 
@@ -118,6 +119,40 @@ img{max-width:100%;display:block;border-radius:8px}
   transition:all .2s;
 }
 .btn-hero-outline:hover{background:rgba(255,255,255,.22);border-color:#fff;transform:translateY(-2px)}
+
+/* ── 合作品牌 ── */
+.partners-bar{
+  background:var(--white);
+  border-bottom:1px solid var(--border);
+  padding:18px 40px;
+}
+.partners-inner{
+  display:flex;align-items:center;gap:28px;
+  max-width:1200px;margin:0 auto;
+}
+.partners-label{
+  font-size:13px;font-weight:700;
+  color:var(--muted);white-space:nowrap;
+  text-transform:uppercase;letter-spacing:1px;
+}
+.partners-row{
+  display:flex;gap:24px;flex-wrap:wrap;align-items:center;
+  flex:1;
+}
+.partner-item{
+  display:flex;flex-direction:column;align-items:center;gap:4px;
+  opacity:.75;transition:all .2s;cursor:default;
+  min-width:70px;
+}
+.partner-item:hover{opacity:1;transform:translateY(-2px)}
+.partner-logo{
+  height:36px;width:auto;
+  object-fit:contain;
+  border-radius:0;display:block;
+}
+.partner-item span{
+  font-size:11px;color:var(--muted);white-space:nowrap;
+}
 
 /* ── 数据 ── */
 .stats-row{
