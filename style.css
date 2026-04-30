@@ -195,6 +195,8 @@ img{max-width:100%;display:block}
 }
 .partner-logo-card:hover{border-color:var(--primary);transform:translateY(-2px)}
 .partner-logo-card img{max-height:70px;max-width:140px;width:auto;object-fit:contain}
+.logo-airline img{max-height:80px;max-width:160px}
+.logo-airline{min-width:180px;height:100px;padding:16px 24px}
 .partner-logo-card.more{flex-direction:column;gap:4px;color:var(--muted)}
 .partner-logo-card.more span{font-size:20px}
 .partner-logo-card.more small{font-size:11px}
