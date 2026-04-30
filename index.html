@@ -3,329 +3,208 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LogiTrans快递 | 专业国际快递物流服务商</title>
-<meta name="description" content="LogiTrans专注国际快递18年，UPS/FedEx/东航/大韩/美森官方合作，安全快捷，覆盖220+国家。" />
+<title>LogiExpress | 专注国际快递 · 全球高效送达</title>
+<meta name="description" content="LogiExpress专注国际快递18年，UPS/FedEx/东航/大韩/美森官方合作，安全快捷，覆盖220+国家。" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <!-- 导航 -->
-<div class="nav">
-  <div class="logo">LogiTrans</div>
-  <div class="menu">
-    <a href="#">首页</a>
-    <a href="#quote">获取报价</a>
-    <a href="#services">服务与价格</a>
-    <a href="#process">解决方案</a>
+<nav class="nav">
+  <div class="nav-brand">
+    <div class="logo">
+      <svg viewBox="0 0 40 40" class="logo-icon"><rect width="40" height="40" rx="8" fill="#0b3d91"/><path d="M10 20h20M20 10v20" stroke="white" stroke-width="3" stroke-linecap="round"/></svg>
+      <div class="logo-text">
+        <strong>LogiExpress</strong>
+        <span>专注国际快递 · 全球高效送达</span>
+      </div>
+    </div>
   </div>
-  <a href="#quote" class="btn-nav">立即咨询</a>
-</div>
+  <div class="nav-menu">
+    <a href="#" class="active">首页</a>
+    <a href="#services">服务</a>
+    <a href="#quote">运费报价</a>
+    <a href="tracking.html">在线查单</a>
+    <a href="#">关于我们</a>
+    <a href="#">新闻资讯</a>
+    <a href="#">联系我们</a>
+  </div>
+  <div class="nav-right">
+    <span class="lang">中文 ▼</span>
+    <a href="#quote" class="btn-contact">💬 联系客服</a>
+  </div>
+</nav>
 
-<!-- Banner -->
-<div class="hero">
-  <div class="hero-left">
-    <h1>专注国际快递<br>让跨境发货更简单</h1>
-    <p>UPS · FedEx · 东航 · 大韩航空 · 美森轮船 官方合作<br>专业18年，220+国家全覆盖，当日发货，丢件必赔</p>
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-badge">✈️ 专注国际快递 · 专线物流解决方案提供商</div>
+    <h1>全球物流 · 高效送达</h1>
+    <p class="hero-subtitle">UPS / FedEx / 空运航班 / 美森海运 · 稳定时效保障</p>
+    
     <div class="track-box">
-      <input id="num" type="text" placeholder="请输入运单号">
-      <button onclick="track()">立即查询</button>
+      <div class="track-icon">📦</div>
+      <input type="text" placeholder="输入运单号，查询物流状态">
+      <button class="btn-track">立即查询</button>
     </div>
-    <div class="hero-btns">
-      <a href="#quote" class="btn-hero-primary">获取报价</a>
-      <a href="https://wa.me/8613800138000" target="_blank" class="btn-hero-outline">联系客服</a>
-    </div>
-  </div>
-</div>
-
-<!-- 合作品牌 -->
-<div class="partners-bar">
-  <div class="partners-inner">
-    <div class="partners-label">官方战略合作</div>
-    <div class="partners-row">
-      <div class="partner-item">
-        <img src="images/logos/ups.svg" alt="UPS" class="partner-logo">
-        <span>UPS国际快递</span>
-      </div>
-      <div class="partner-item">
-        <img src="images/logos/fedex.svg" alt="FedEx" class="partner-logo">
-        <span>FedEx联邦快递</span>
-      </div>
-      <div class="partner-item">
-        <img src="images/logos/cea.svg" alt="中国东方航空" class="partner-logo">
-        <span>中国东方航空</span>
-      </div>
-      <div class="partner-item">
-        <img src="images/logos/ke.svg" alt="大韩航空" class="partner-logo">
-        <span>大韩航空</span>
-      </div>
-      <div class="partner-item">
-        <img src="images/logos/matson.svg" alt="美森轮船" class="partner-logo">
-        <span>美森轮船</span>
-      </div>
+    
+    <div class="hero-features">
+      <span>✓ 支持全球200+国家查询</span>
+      <span>✓ 实时轨迹追踪</span>
+      <span>✓ 多语言支持</span>
     </div>
   </div>
-</div>
-
-<!-- 数据 -->
-<div class="stats-row" id="stats-row">
-  <div class="stat-item">
-    <div class="stat-icon">🌍</div>
-    <strong class="stat-num" data-target="220" data-suffix="+">0</strong>
-    <span>覆盖国家</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-icon">📦</div>
-    <strong class="stat-num" data-target="150" data-suffix="万+" data-mult="10000">0</strong>
-    <span>日处理包裹</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-icon">⏱️</div>
-    <strong class="stat-num" data-target="99.5" data-suffix="%">0</strong>
-    <span>准时率</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-icon">🤝</div>
-    <strong class="stat-num" data-target="5000" data-suffix="+">0</strong>
-    <span>合作客户</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-icon">🏆</div>
-    <strong class="stat-num" data-target="10" data-suffix="年">0</strong>
-    <span>行业经验</span>
-  </div>
-  <div class="stat-item">
-    <div class="stat-icon">📋</div>
-    <strong class="stat-num" data-target="100" data-suffix="万+" data-mult="10000">0</strong>
-    <span>累计订单</span>
-  </div>
-</div>
+</section>
 
 <!-- 报价模块 -->
-<div class="section quote-section" id="quote">
-  <div class="container">
-    <div class="section-header">
-      <h2>30秒获取运费报价</h2>
-      <p>输入基本信息，立即获取最优物流方案与价格</p>
+<section class="quote-section" id="quote">
+  <div class="quote-card">
+    <div class="quote-header">
+      <h3>获取运费报价</h3>
+      <p>快速获取准确的物流报价方案</p>
     </div>
-    <div class="quote-card">
-      <div class="quote-row">
-        <div class="quote-field">
-          <label>起运地</label>
-          <select id="q-origin">
-            <option value="">请选择起运城市</option>
-            <option>深圳</option>
-            <option>广州</option>
-            <option>上海</option>
-            <option>义乌</option>
-            <option>杭州</option>
-            <option>北京</option>
-            <option>厦门</option>
-            <option>其他</option>
-          </select>
-        </div>
-        <div class="quote-arrow">→</div>
-        <div class="quote-field">
-          <label>目的地</label>
-          <select id="q-dest">
-            <option value="">请选择目的国家</option>
-            <option>美国</option>
-            <option>英国</option>
-            <option>德国</option>
-            <option>法国</option>
-            <option>日本</option>
-            <option>韩国</option>
-            <option>澳大利亚</option>
-            <option>加拿大</option>
-            <option>其他国家</option>
-          </select>
-        </div>
-        <div class="quote-field">
-          <label>重量 (kg)</label>
-          <input type="number" id="q-weight" placeholder="如：5" min="0.1" step="0.1">
-        </div>
-        <button class="btn-quote" onclick="getQuote()">获取报价</button>
+    <div class="quote-form">
+      <div class="quote-field">
+        <label>起运地</label>
+        <select><option>选择起运地</option><option>深圳</option><option>广州</option><option>上海</option><option>义乌</option></select>
       </div>
-      <div class="quote-result" id="quote-result" style="display:none">
-        <div class="quote-result-inner">
-          <div class="quote-result-title">为您推荐最优方案</div>
-          <div class="quote-plans" id="quote-plans"></div>
-          <p class="quote-tip">💬 价格仅供参考，实际以预报系统为准。咨询客服获取精确报价。</p>
-        </div>
+      <div class="quote-field">
+        <label>目的地</label>
+        <select><option>选择目的地</option><option>美国</option><option>英国</option><option>德国</option><option>日本</option></select>
+      </div>
+      <div class="quote-field">
+        <label>货物类型</label>
+        <select><option>请选择货物类型</option><option>普通货物</option><option>带电产品</option><option>敏感货</option></select>
+      </div>
+      <div class="quote-field">
+        <label>重量 (KG)</label>
+        <input type="number" placeholder="请输入重量">
+      </div>
+      <button class="btn-quote">📋 立即获取报价</button>
+    </div>
+    <p class="quote-note">提交后专属客服将快速与您联系</p>
+  </div>
+</section>
+
+<!-- 数据展示 -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-icon">🏆</div>
+      <div class="stat-text">
+        <strong>10年行业经验</strong>
+        <span>专业物流服务团队</span>
       </div>
     </div>
-    <div class="quote-trust">
-      <span>✅ 免费询价</span>
-      <span>🔒 信息安全</span>
-      <span>⏱️ 30秒响应</span>
-      <span>📞 专业顾问1对1服务</span>
+    <div class="stat-item">
+      <div class="stat-icon">🌍</div>
+      <div class="stat-text">
+        <strong>220+ 国家覆盖</strong>
+        <span>全球物流网络覆盖</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">⏱️</div>
+      <div class="stat-text">
+        <strong>准时率 99%</strong>
+        <span>时效稳定有保障</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🎧</div>
+      <div class="stat-text">
+        <strong>7×24小时服务</strong>
+        <span>专业客服随时响应</span>
+      </div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-icon">🛡️</div>
+      <div class="stat-text">
+        <strong>货物安全保障</strong>
+        <span>全程保险安心无忧</span>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <!-- 服务 -->
-<div class="section" id="services">
-  <div class="container">
-    <div class="section-header">
-      <h2>我们的服务</h2>
-      <p>专注快递18年，从揽收到签收，全链路一站式物流服务</p>
+<section class="services-section" id="services">
+  <div class="section-header">
+    <h2>我们的物流服务</h2>
+    <p>提供多样化物流解决方案，满足您的不同需求</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card blue">
+      <div class="service-icon">✈️</div>
+      <h3>国际快递</h3>
+      <p>UPS / FedEx 优质渠道<br>3-5天快速送达全球</p>
+      <a href="#quote" class="btn-service">了解详情</a>
     </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <img src="images/international-express.png" alt="国际快递">
-        <div class="service-card-body">
-          <h3>国际快递</h3>
-          <p>全球主要城市 3-7 个工作日送达，门到门全程追踪，优先清关服务。</p>
-          <div class="service-tags">
-            <span class="tag">3-7天到达</span>
-            <span class="tag">门到门</span>
-            <span class="tag">全程追踪</span>
-          </div>
-          <a href="#quote" class="btn-service-cta">立即发货 →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <img src="images/international-freight.png" alt="国际专线">
-        <div class="service-card-body">
-          <h3>国际专线</h3>
-          <p>中美、中欧、中日专线稳定运营，双清包税，批量发货性价比更高。</p>
-          <div class="service-tags">
-            <span class="tag">双清包税</span>
-            <span class="tag">性价比高</span>
-            <span class="tag">批量优惠</span>
-          </div>
-          <a href="#quote" class="btn-service-cta">获取报价 →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <img src="images/overseas-warehouse.png" alt="海外仓储">
-        <div class="service-card-body">
-          <h3>海外仓储</h3>
-          <p>美国、欧洲多地仓库布局，支持一件代发，退件处理，库存实时管理。</p>
-          <div class="service-tags">
-            <span class="tag">一件代发</span>
-            <span class="tag">退件处理</span>
-            <span class="tag">实时库存</span>
-          </div>
-          <a href="#quote" class="btn-service-cta">咨询仓储 →</a>
-        </div>
-      </div>
-      <div class="service-card">
-        <img src="images/last-mile.png" alt="末端配送">
-        <div class="service-card-body">
-          <h3>末端配送</h3>
-          <p>本地快递网络覆盖，次日达、当日达灵活可选，全程轨迹可查。</p>
-          <div class="service-tags">
-            <span class="tag">次日达</span>
-            <span class="tag">当日达</span>
-            <span class="tag">全程可查</span>
-          </div>
-          <a href="#quote" class="btn-service-cta">立即发货 →</a>
-        </div>
-      </div>
+    <div class="service-card purple">
+      <div class="service-icon">🛫</div>
+      <h3>国际空运</h3>
+      <p>东航 / 大韩航空合作<br>航班稳定，时效保障</p>
+      <a href="#quote" class="btn-service">了解详情</a>
+    </div>
+    <div class="service-card teal">
+      <div class="service-icon">🚢</div>
+      <h3>美森海运</h3>
+      <p>美森快船专线<br>15-18天快捷到港</p>
+      <a href="#quote" class="btn-service">了解详情</a>
+    </div>
+    <div class="service-card orange">
+      <div class="service-icon">📦</div>
+      <h3>专线物流</h3>
+      <p>FBA专线 / 电商小包<br>安全稳定，价格优惠</p>
+      <a href="#quote" class="btn-service">了解详情</a>
     </div>
   </div>
-</div>
+</section>
 
-<!-- 流程 -->
-<div class="section process-section">
-  <div class="container">
-    <div class="section-header">
-      <h2>服务流程</h2>
-      <p>简单四步，轻松完成跨境发货</p>
+<!-- 合作伙伴 -->
+<section class="partners-section">
+  <div class="section-header">
+    <h2>合作伙伴</h2>
+    <p>与全球优质物流企业深度合作</p>
+  </div>
+  <div class="partners-row">
+    <div class="partner-logo-card">
+      <img src="images/logos/ups.svg" alt="UPS">
     </div>
-    <div class="process-grid">
-      <div class="process-item">
-        <div class="process-num">1</div>
-        <h4>提交订单</h4>
-        <p>在线填写发货信息，预付运费，获取运单号</p>
-      </div>
-      <div class="process-item">
-        <div class="process-num">2</div>
-        <h4>上门揽收</h4>
-        <p>预约时间，快递员上门取件，支持全国上门服务</p>
-      </div>
-      <div class="process-item">
-        <div class="process-num">3</div>
-        <h4>国际运输</h4>
-        <p>专业清关团队，双清包税，实时轨迹追踪</p>
-      </div>
-      <div class="process-item">
-        <div class="process-num">4</div>
-        <h4>送达签收</h4>
-        <p>目的地派送上门，买家确认签收，服务完成</p>
-      </div>
+    <div class="partner-logo-card">
+      <img src="images/logos/fedex.svg" alt="FedEx">
     </div>
-    <div class="process-cta">
-      <a href="#quote" class="btn-hero-primary">开始发货 →</a>
+    <div class="partner-logo-card">
+      <img src="images/logos/cea.svg" alt="中国东方航空">
+    </div>
+    <div class="partner-logo-card">
+      <img src="images/logos/ke.svg" alt="大韩航空">
+    </div>
+    <div class="partner-logo-card">
+      <img src="images/logos/matson.svg" alt="美森轮船">
+    </div>
+    <div class="partner-logo-card more">
+      <span>🤝</span>
+      <small>更多合作伙伴</small>
     </div>
   </div>
-</div>
-
-<!-- 为什么选我们 -->
-<div class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2>为什么选择 LogiTrans</h2>
-      <p>专业、高效、值得信赖的物流伙伴</p>
-    </div>
-    <div class="why-grid">
-      <div class="why-card">
-        <div class="why-icon">🚀</div>
-        <h4>极速时效</h4>
-        <p>全球主要城市 3-7 天到达，优先航班保障，延误必赔承诺。</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🛡️</div>
-        <h4>安全可靠</h4>
-        <p>全链路保险覆盖，丢件包赔，数据全程加密，隐私有保障。</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">💰</div>
-        <h4>价格透明</h4>
-        <p>无隐藏费用，在线实时报价，支持多币种结算，账期灵活。</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">📞</div>
-        <h4>专属客服</h4>
-        <p>7×24小时在线，微信/WhatsApp多渠道响应，平均30秒接通。</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">💻</div>
-        <h4>智能系统</h4>
-        <p>一键下单、智能比价、批量预报，系统自动最优路由推荐。</p>
-      </div>
-      <div class="why-card">
-        <div class="why-icon">🏆</div>
-        <h4>10年品牌</h4>
-        <p>深耕跨境物流10年，服务Amazon、Shopify等5000+卖家，信誉保证。</p>
-      </div>
-    </div>
-    <div class="why-cta">
-      <a href="#quote" class="btn-hero-primary">获取专属报价</a>
-      <a href="https://wa.me/8613800138000" target="_blank" class="btn-hero-outline">在线咨询</a>
-    </div>
-  </div>
-</div>
+</section>
 
 <!-- 底部 -->
 <footer class="footer">
-  <div class="footer-brand">
-    <strong>LogiTrans</strong>
-    <p class="footer-copy">连接全球，传递信任</p>
-    <div class="footer-contact">
-      <span>📞 400-888-8888</span>
-      <span>✉️ hello@logitrans.com</span>
-      <span>💬 WhatsApp: +86 138 0013 8000</span>
+  <div class="footer-content">
+    <div class="footer-brand">
+      <strong>LogiExpress</strong>
+      <p>专注国际快递 · 全球高效送达</p>
     </div>
-  </div>
-  <div class="footer-links">
-    <a href="#">首页</a>
-    <a href="#quote">获取报价</a>
-    <a href="#services">服务</a>
-    <a href="#process">流程</a>
-  </div>
-  <div>
-    <p style="font-size:13px">© 2026 LogiTrans 物流有限公司</p>
+    <div class="footer-links">
+      <a href="#">首页</a>
+      <a href="#services">服务</a>
+      <a href="#quote">运费报价</a>
+      <a href="tracking.html">在线查单</a>
+    </div>
+    <p class="footer-copy">© 2026 LogiExpress 国际物流有限公司</p>
   </div>
 </footer>
 
