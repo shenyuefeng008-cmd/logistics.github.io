@@ -114,6 +114,91 @@
   }
   .quick-btns button:hover { border-color: var(--accent); color: var(--accent); background: #FFF3EB; }
 
+  /* ── 询价按钮 ── */
+  .inquiry-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 24px;
+    background: linear-gradient(135deg, var(--accent), #E85D00);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 12px rgba(255,107,0,0.35);
+  }
+  .inquiry-btn:hover { transform: translateY(-1px); box-shadow: 0 6px 16px rgba(255,107,0,0.45); }
+
+  /* ── 浮窗遮罩 ── */
+  .overlay {
+    display: none;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(10,22,40,0.6);
+    z-index: 999;
+    align-items: center; justify-content: center;
+  }
+  .overlay.show { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    max-width: 440px;
+    width: 90%;
+    box-shadow: 0 20px 60px rgba(10,22,40,0.3);
+    animation: slideUp 0.25s ease;
+  }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+  .modal h2 { font-size: 20px; margin-bottom: 4px; color: var(--primary); }
+  .modal p.desc { font-size: 13px; color: #889; margin-bottom: 20px; }
+
+  .form-group { margin-bottom: 16px; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: #555; }
+  .form-group input, .form-group textarea, .form-group select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 2px solid var(--border);
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+  }
+  .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
+  .form-group textarea { resize: vertical; min-height: 60px; }
+  .form-row { display: flex; gap: 12px; }
+  .form-row .form-group { flex: 1; }
+
+  .modal-btns { display: flex; gap: 12px; margin-top: 20px; }
+  .modal-btns button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: opacity 0.2s;
+  }
+  .btn-cancel { background: #F1F3F5; color: #666; }
+  .btn-submit { background: var(--accent); color: var(--white); }
+  .btn-submit:hover { opacity: 0.85; }
+
+  /* ── 成功提交提示 ── */
+  .success-box {
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: #E8F8EF;
+    border: 1px solid #34C759;
+    border-radius: 10px;
+    color: #1E7B3E;
+    font-size: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+
   footer { text-align: center; padding: 16px; font-size: 12px; color: #888; }
 </style>
 </head>
@@ -123,7 +208,7 @@
   <div style="width:40px;height:40px;border-radius:50%;background:#FF6B00;display:flex;align-items:center;justify-content:center;font-size:20px;">🚚</div>
   <div>
     <h1>JLLogi 捷流物流 AI 客服</h1>
-    <span>Powered by AI · JLLogi 捷流物流</span>
+    <span>Powered by AI &middot; 18年国际物流经验</span>
   </div>
 </header>
 
@@ -140,7 +225,7 @@
     <button onclick="ask('我的包裹到哪了？')">我的包裹到哪了？</button>
     <button onclick="ask('哪些是国家禁止寄送的？')">哪些东西不能寄？</button>
     <button onclick="ask('液体可以寄国际快递吗？')">液体可以寄吗？</button>
-    <button onclick="ask('时效最快要几天？')">最快几天到？</button>
+    <button onclick="openInquiry()">📋 提交寄件询价</button>
   </div>
 
   <div id="input-area">
@@ -149,10 +234,86 @@
   </div>
 </main>
 
-<footer>JLLogi 捷流物流 · AI 智能客服</footer>
+<footer>JLLogi 捷流物流 &middot; AI 智能客服</footer>
+
+<!-- ── 询价浮窗 ── -->
+<div class="overlay" id="inquiryOverlay" onclick="if(event.target===this)closeInquiry()">
+  <div class="modal" id="inquiryModal">
+    <!-- 表单初始态 -->
+    <div id="inquiryForm">
+      <h2>📋 提交寄件询价</h2>
+      <p class="desc">填写信息后，客服将在30分钟内与您联系</p>
+      <div class="form-row">
+        <div class="form-group">
+          <label>联系人 *</label>
+          <input type="text" id="iqName" placeholder="您的称呼">
+        </div>
+        <div class="form-group">
+          <label>手机号 *</label>
+          <input type="tel" id="iqPhone" placeholder="方便我们联系您">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>发货地</label>
+        <input type="text" id="iqFrom" placeholder="如：上海、深圳">
+      </div>
+      <div class="form-group">
+        <label>目的地 *</label>
+        <select id="iqTo">
+          <option value="">请选择目的地</option>
+          <option value="美国">🇺🇸 美国</option>
+          <option value="英国">🇬🇧 英国</option>
+          <option value="德国">🇩🇪 德国</option>
+          <option value="日本">🇯🇵 日本</option>
+          <option value="韩国">🇰🇷 韩国</option>
+          <option value="澳大利亚">🇦🇺 澳大利亚</option>
+          <option value="加拿大">🇨🇦 加拿大</option>
+          <option value="法国">🇫🇷 法国</option>
+          <option value="新加坡">🇸🇬 新加坡</option>
+          <option value="其他">其他</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>预估重量 (kg)</label>
+          <input type="number" id="iqWeight" placeholder="如：10" min="0.1" step="0.1">
+        </div>
+        <div class="form-group">
+          <label>物流方式</label>
+          <select id="iqMethod">
+            <option value="auto">AI推荐</option>
+            <option value="express">国际快递(3-7天)</option>
+            <option value="air">国际空运(5-10天)</option>
+            <option value="sea">美森海运(15-25天)</option>
+            <option value="line">专线物流(10-20天)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>物品描述</label>
+        <textarea id="iqDesc" placeholder="如：日用百货、电子产品、服装...（带电池/液体请注明）"></textarea>
+      </div>
+      <div class="modal-btns">
+        <button class="btn-cancel" onclick="closeInquiry()">取消</button>
+        <button class="btn-submit" onclick="submitInquiry()">提交询价</button>
+      </div>
+    </div>
+    <!-- 提交成功态 -->
+    <div id="inquirySuccess" style="display:none; text-align:center; padding: 20px 0;">
+      <div style="font-size:56px; margin-bottom:16px;">✅</div>
+      <h2>询价已提交！</h2>
+      <p style="color:#666; margin-top:8px;">客服将在 <strong>30分钟</strong> 内联系您</p>
+      <div style="margin-top:12px; padding:12px; background:#FFF3EB; border-radius:8px; text-align:left; font-size:13px; color:#555;">
+        📞 或直接拨打：<strong style="color:var(--accent);font-size:15px;">400-XXX-XXXX</strong><br>
+        📧 邮箱：service@jllogi.com
+      </div>
+      <button class="btn-submit" style="margin-top:20px; padding: 10px 40px;" onclick="closeInquiry()">知道了</button>
+    </div>
+  </div>
+</div>
 
 <script>
-// ── 接口地址（部署 Worker 后替换为实际域名） ──
+// ── 接口地址（部署后替换） ──
 const CHAT_API = "/api/chat";
 
 const chatBox = document.getElementById("chat-box");
@@ -208,6 +369,15 @@ async function sendMsg() {
     botDiv.querySelector(".bubble").classList.remove("loading");
     botDiv.querySelector(".bubble").innerHTML = escapeHtml(reply);
 
+    // ── 智能判断：报价后自动显示询价按钮 ──
+    if (isQuoteReply(reply)) {
+      const inquiryBtn = document.createElement("button");
+      inquiryBtn.className = "inquiry-btn";
+      inquiryBtn.textContent = "📋 提交询价 → 获取精准报价";
+      inquiryBtn.onclick = openInquiry;
+      botDiv.appendChild(inquiryBtn);
+    }
+
   } catch (e) {
     botDiv.querySelector(".bubble").classList.remove("loading");
     botDiv.querySelector(".bubble").innerHTML = `❌ 网络错误，请检查网络后重试。`;
@@ -215,6 +385,55 @@ async function sendMsg() {
     sendBtn.disabled = false;
     chatBox.scrollTop = chatBox.scrollHeight;
   }
+}
+
+// ── 判断是否报价相关回复 ──
+function isQuoteReply(text) {
+  const keywords = ["元/kg", "¥", "报价", "价格", "费用", "收费", "元/", "/kg", "估算", "大概", "参考"];
+  return keywords.some(k => text.includes(k));
+}
+
+// ── 询价浮窗逻辑 ──
+function openInquiry() {
+  document.getElementById("inquiryOverlay").classList.add("show");
+  document.getElementById("inquiryForm").style.display = "block";
+  document.getElementById("inquirySuccess").style.display = "none";
+}
+
+function closeInquiry() {
+  document.getElementById("inquiryOverlay").classList.remove("show");
+}
+
+function submitInquiry() {
+  const name = document.getElementById("iqName").value.trim();
+  const phone = document.getElementById("iqPhone").value.trim();
+  const to = document.getElementById("iqTo").value;
+
+  if (!name) { alert("请填写联系人"); return; }
+  if (!phone) { alert("请填写手机号"); return; }
+  if (!to)   { alert("请选择目的地"); return; }
+
+  const inquiry = {
+    name,
+    phone,
+    from:   document.getElementById("iqFrom").value.trim(),
+    to,
+    weight: document.getElementById("iqWeight").value,
+    method: document.getElementById("iqMethod").value,
+    desc:   document.getElementById("iqDesc").value.trim(),
+    time:   new Date().toISOString(),
+  };
+
+  // 存储到 localStorage
+  const inquiries = JSON.parse(localStorage.getItem("jllogi_inquiries") || "[]");
+  inquiries.push(inquiry);
+  localStorage.setItem("jllogi_inquiries", JSON.stringify(inquiries));
+
+  console.log("📋 新询价:", inquiry);
+
+  // 切到成功态
+  document.getElementById("inquiryForm").style.display = "none";
+  document.getElementById("inquirySuccess").style.display = "block";
 }
 
 msgInput.addEventListener("keydown", e => { if (e.key === "Enter") sendMsg(); });
